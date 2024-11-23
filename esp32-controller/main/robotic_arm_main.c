@@ -123,7 +123,7 @@ typedef struct __attribute__((packed)) {
     uint16_t left_stick_y;
     uint16_t right_stick_x; // 右摇杆
     uint16_t right_stick_y;
-    uint8_t left_trigger; // 左上R2按钮
+    uint8_t left_trigger; // 左上L2按钮
     uint8_t left_trigger_level;
     uint8_t right_trigger; // 右上R2按钮
     uint8_t right_trigger_level;
@@ -172,7 +172,7 @@ static char *bda2str(esp_bd_addr_t bda, char *str, size_t size)
     return str;
 }
 
-// 处理手柄蓝牙输入:
+// 处理蓝牙手柄输入:
 void hidh_callback(void *handler_args, esp_event_base_t base, int32_t id, void *event_data)
 {
     esp_hidh_event_t event = (esp_hidh_event_t)id;
@@ -203,9 +203,6 @@ void hidh_callback(void *handler_args, esp_event_base_t base, int32_t id, void *
             // 每200ms采样输入:
             int64_t now = esp_timer_get_time();
             if (now - ctrl_input_time > 200000) {
-//            if (memcmp(param->input.data, &ctrl_input_data, CTRL_INPUT_DATA_LENGTH) != 0) {
-                ctrl_input_time = esp_timer_get_time();
-                ESP_LOGI(TAG_HID, "TIME>> %lld", ctrl_input_time);
                 // 复制输入数据并发送消息到队列:
                 memcpy(&ctrl_input_data, (char *) param->input.data, CTRL_INPUT_DATA_LENGTH);
                 xQueueSend(ctrl_input_queue, &ctrl_input_data, 0); // 如果上一次的输入数据还未处理，则不等待直接丢弃

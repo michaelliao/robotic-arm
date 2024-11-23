@@ -72,7 +72,7 @@
 #define ALLLED_OFF_H    0xFD    /*!< load all the LEDn_OFF registers, byte 1 (turn 8-15 channels off) */
 #define CLOCK_FREQ      25000000  /*!< 25MHz default osc clock */
 
-static const char *TAG = "pca9685";
+static const char *TAG = "PCA9685";
 
 // default address is 0x40:
 static uint8_t PCA9685_ADDR = 0x40;
