@@ -2,7 +2,7 @@
 
 Robotic Arm是一个开源机械臂，采用ESP32-C3芯片通过PCA9685芯片控制4路舵机，使用Xbox兼容手柄遥控。
 
-<iframe style="width:100%;height:400px" src="https://player.bilibili.com/player.html?bvid=BV1EWz1YaE7P&autoplay=0" allowfullscreen></iframe>
+[![video](video.jpg)](https://www.bilibili.com/video/BV1EWz1YaE7P/)
 
 ## 目录结构说明
 
